@@ -158,12 +158,6 @@ h1 {
   color: var(--accent);
 }
 
-.icon-link-feature {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    var(--panel-soft);
-}
-
 .icon-link svg {
   width: 26px;
   height: 26px;
@@ -260,7 +254,7 @@ h1 {
   }
 
   .icon-links {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 
   .icon-link svg {
