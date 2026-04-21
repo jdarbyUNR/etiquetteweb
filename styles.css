@@ -227,6 +227,7 @@ h2 {
   display: grid;
   gap: 8px;
   align-content: start;
+  text-align: center;
 }
 
 .release-copy h2,
@@ -293,6 +294,84 @@ h2 {
   color: var(--text);
 }
 
+@media (max-width: 699px) {
+  .page-shell {
+    width: min(760px, calc(100% - 16px));
+    padding: 8px 0 14px;
+  }
+
+  .landing {
+    gap: 8px;
+  }
+
+  .section {
+    padding: 12px;
+  }
+
+  .hero-image {
+    min-height: 210px;
+  }
+
+  .top-intro {
+    padding: 6px 2px 0;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 14vw, 3.8rem);
+  }
+
+  .lede {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    line-height: 1.5;
+  }
+
+  .icon-links {
+    gap: 6px;
+  }
+
+  .icon-link svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .release-card {
+    gap: 10px;
+  }
+
+  .release-copy {
+    gap: 6px;
+  }
+
+  .cta-button {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .player-stack {
+    gap: 6px;
+    padding-top: 10px;
+  }
+
+  .player-copy {
+    display: grid;
+    gap: 4px;
+  }
+
+  .track-player {
+    padding: 8px;
+  }
+
+  .filmstrip-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .filmstrip-card {
+    min-height: 220px;
+  }
+}
+
 @media (min-width: 700px) {
   .page-shell {
     width: min(760px, calc(100% - 24px));
@@ -333,13 +412,16 @@ h2 {
     align-items: center;
   }
 
+  .release-copy {
+    text-align: left;
+  }
+
   .filmstrip-card {
     min-height: 180px;
   }
 }
 
 @media (max-width: 520px) {
-  .filmstrip-grid,
   .section-footer-links {
     grid-template-columns: 1fr;
   }
