@@ -114,16 +114,25 @@ iframe {
 
 .eyebrow,
 .link-label,
-h1 {
+h1,
+h2 {
   font-family: Arial Black, Arial, sans-serif;
 }
 
-h1 {
+h1,
+h2 {
   margin: 0;
-  font-size: clamp(2.6rem, 15vw, 4.2rem);
   line-height: 0.9;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 15vw, 4.2rem);
+}
+
+h2 {
+  font-size: clamp(1.55rem, 6vw, 2.5rem);
 }
 
 .lede,
@@ -156,6 +165,11 @@ h1 {
   border: 1px solid var(--line);
   background: var(--panel-soft);
   color: var(--accent);
+}
+
+.icon-link-highlight {
+  background: rgba(245, 245, 239, 0.1);
+  border-color: rgba(245, 245, 239, 0.45);
 }
 
 .icon-link svg {
@@ -191,6 +205,58 @@ h1 {
   padding: 10px;
 }
 
+.release-card {
+  display: grid;
+  gap: 12px;
+}
+
+.release-art {
+  margin: 0;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: #0b0b0b;
+}
+
+.release-art img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.release-copy {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.release-copy h2,
+.release-copy p {
+  margin: 0;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: 1px solid rgba(245, 245, 239, 0.45);
+  background: rgba(245, 245, 239, 0.1);
+  color: var(--text);
+  font-family: Arial Black, Arial, sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.player-stack {
+  display: grid;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
 .section-photo-row {
   padding: 8px;
 }
@@ -211,7 +277,7 @@ h1 {
 
 .section-footer-links {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 8px;
 }
 
@@ -254,12 +320,17 @@ h1 {
   }
 
   .icon-links {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 
   .icon-link svg {
     width: 28px;
     height: 28px;
+  }
+
+  .release-card {
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: center;
   }
 
   .filmstrip-card {
