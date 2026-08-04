@@ -20,7 +20,9 @@ html {
 
 body {
   margin: 0;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Arial Black", Arial, sans-serif;
+  font-weight: 900;
+  font-synthesis: weight;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 16%),
@@ -84,8 +86,7 @@ iframe {
 }
 
 .hero-image,
-.track-player,
-.mini-highlight {
+.track-player {
   border: 1px solid var(--line);
   background: var(--panel-soft);
 }
@@ -113,13 +114,6 @@ iframe {
   text-align: center;
 }
 
-.eyebrow,
-.link-label,
-h1,
-h2 {
-  font-family: Arial Black, Arial, sans-serif;
-}
-
 h1,
 h2 {
   margin: 0;
@@ -137,15 +131,13 @@ h2 {
 }
 
 .lede,
-.section p,
-.mini-highlight p {
+.section p {
   color: var(--muted);
   line-height: 1.55;
 }
 
 .lede {
   margin: 12px 0 0;
-  font-family: Arial Black, Arial, sans-serif;
   font-size: 0.74rem;
   letter-spacing: 0.15em;
   line-height: 1.6;
@@ -154,7 +146,7 @@ h2 {
 
 .icon-links {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -189,8 +181,7 @@ h2 {
   margin: 0;
 }
 
-.eyebrow,
-.link-label {
+.eyebrow {
   font-size: 0.64rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -241,7 +232,6 @@ h2 {
   border: 1px solid rgba(245, 245, 239, 0.45);
   background: rgba(245, 245, 239, 0.1);
   color: var(--text);
-  font-family: Arial Black, Arial, sans-serif;
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -304,24 +294,6 @@ h2 {
   overflow: hidden;
   border: 1px solid var(--line);
   background: #000;
-}
-
-.section-footer-links {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-}
-
-.mini-highlight {
-  padding: 12px;
-}
-
-.mini-highlight p {
-  margin: 8px 0 0;
-}
-
-.mini-highlight a {
-  color: var(--text);
 }
 
 @media (max-width: 699px) {
@@ -401,9 +373,6 @@ h2 {
     height: 170px;
   }
 
-  .mini-highlight {
-    text-align: center;
-  }
 }
 
 @media (min-width: 700px) {
@@ -433,7 +402,7 @@ h2 {
   }
 
   .icon-links {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .icon-link svg {
@@ -461,14 +430,16 @@ h2 {
     letter-spacing: 0.015em;
   }
 
-  .release-card,
-  .filmstrip-grid,
-  .section-footer-links {
+  .release-card {
     grid-template-columns: 1fr;
   }
 
+  .release-copy {
+    order: -1;
+  }
+
   .filmstrip-card {
-    height: 220px;
+    height: 180px;
   }
 }
 
@@ -486,7 +457,4 @@ h2 {
     width: fit-content;
   }
 
-  .mini-highlight {
-    text-align: left;
-  }
 }
