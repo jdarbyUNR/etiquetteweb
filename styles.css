@@ -96,7 +96,8 @@ iframe {
 }
 
 .hero-image {
-  min-height: 240px;
+  margin: 0;
+  height: 240px;
   overflow: hidden;
 }
 
@@ -153,7 +154,7 @@ h2 {
 
 .icon-links {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -165,11 +166,6 @@ h2 {
   border: 1px solid var(--line);
   background: var(--panel-soft);
   color: var(--accent);
-}
-
-.icon-link-highlight {
-  background: rgba(245, 245, 239, 0.1);
-  border-color: rgba(245, 245, 239, 0.45);
 }
 
 .icon-link svg {
@@ -258,19 +254,53 @@ h2 {
   border-top: 1px solid var(--line);
 }
 
+.section-video {
+  display: grid;
+  gap: 10px;
+}
+
+.video-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.video-heading p,
+.video-heading h2 {
+  margin: 0;
+}
+
+.video-heading h2 {
+  font-size: clamp(1.45rem, 5vw, 2.2rem);
+}
+
+.video-frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .section-photo-row {
   padding: 8px;
 }
 
 .filmstrip-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
 .filmstrip-card {
   margin: 0;
-  min-height: 120px;
+  height: 120px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: #000;
@@ -300,20 +330,16 @@ h2 {
     padding: 8px 0 14px;
   }
 
-  .landing {
-    gap: 8px;
-  }
-
   .section {
     padding: 12px;
   }
 
   .hero-image {
-    min-height: 210px;
+    height: 220px;
   }
 
   .top-intro {
-    padding: 6px 2px 0;
+    padding: 8px 4px 0;
   }
 
   h1 {
@@ -331,8 +357,8 @@ h2 {
   }
 
   .icon-link svg {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .release-card {
@@ -341,6 +367,10 @@ h2 {
 
   .release-copy {
     gap: 6px;
+  }
+
+  .release-copy p {
+    font-size: 0.94rem;
   }
 
   .cta-button {
@@ -363,12 +393,16 @@ h2 {
   }
 
   .filmstrip-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
   .filmstrip-card {
-    min-height: 220px;
+    height: 170px;
+  }
+
+  .mini-highlight {
+    text-align: center;
   }
 }
 
@@ -383,7 +417,7 @@ h2 {
   }
 
   .hero-image {
-    min-height: 320px;
+    height: 320px;
   }
 
   .top-intro {
@@ -399,7 +433,7 @@ h2 {
   }
 
   .icon-links {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 
   .icon-link svg {
@@ -417,12 +451,42 @@ h2 {
   }
 
   .filmstrip-card {
-    min-height: 180px;
+    height: 180px;
   }
 }
 
 @media (max-width: 520px) {
+  h1 {
+    font-size: clamp(2.2rem, 12.4vw, 3.2rem);
+    letter-spacing: 0.015em;
+  }
+
+  .release-card,
+  .filmstrip-grid,
   .section-footer-links {
     grid-template-columns: 1fr;
+  }
+
+  .filmstrip-card {
+    height: 220px;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 699px) {
+  .release-card {
+    grid-template-columns: 150px minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .release-copy {
+    text-align: left;
+  }
+
+  .cta-button {
+    width: fit-content;
+  }
+
+  .mini-highlight {
+    text-align: left;
   }
 }
