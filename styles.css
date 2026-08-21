@@ -55,6 +55,13 @@ iframe {
   display: block;
 }
 
+.pixel-image {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .page-shell {
   width: min(760px, calc(100% - 12px));
   margin: 0 auto;
@@ -294,6 +301,94 @@ h2 {
   overflow: hidden;
   border: 1px solid var(--line);
   background: #000;
+}
+
+.privacy-note {
+  padding: 4px 12px 0;
+  text-align: center;
+}
+
+.privacy-link {
+  color: #777772;
+  font-size: 0.56rem;
+  line-height: 1.45;
+  letter-spacing: 0.035em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-transform: uppercase;
+}
+
+.privacy-page {
+  min-height: 100vh;
+}
+
+.privacy-shell {
+  width: min(680px, calc(100% - 24px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: grid;
+  align-items: center;
+}
+
+.privacy-card {
+  padding: clamp(20px, 5vw, 38px);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.privacy-card section {
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.privacy-kicker,
+.privacy-card h1,
+.privacy-card h2,
+.privacy-card p {
+  margin: 0;
+}
+
+.privacy-kicker {
+  color: var(--muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.privacy-card h1 {
+  margin-top: 8px;
+  font-size: clamp(2rem, 8vw, 3.6rem);
+}
+
+.privacy-card h2 {
+  font-size: clamp(1.05rem, 4vw, 1.45rem);
+}
+
+.privacy-card p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.privacy-card p a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacy-back {
+  display: inline-flex;
+  margin-top: 24px;
+  padding: 11px 14px;
+  border: 1px solid var(--line-strong);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 699px) {
