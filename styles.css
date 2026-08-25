@@ -46,6 +46,12 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+iframe:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 img {
   display: block;
   width: 100%;
@@ -177,6 +183,15 @@ h2 {
   gap: 8px;
 }
 
+.section-links {
+  display: grid;
+  gap: 8px;
+}
+
+.section-label {
+  margin: 0;
+}
+
 .player-copy {
   display: flex;
   justify-content: space-between;
@@ -197,6 +212,11 @@ h2 {
 
 .track-player {
   padding: 10px;
+}
+
+.track-player iframe {
+  max-width: 100%;
+  border: 0;
 }
 
 .release-card {
@@ -229,7 +249,12 @@ h2 {
   margin: 0;
 }
 
+.release-copy .release-status {
+  color: var(--text);
+}
+
 .cta-button {
+  min-height: 52px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -242,6 +267,12 @@ h2 {
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.cta-button-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #050505;
 }
 
 .player-stack {
