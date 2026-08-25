@@ -20,7 +20,6 @@
 }
 
 .release-artist,
-.release-kicker,
 .release-header h1,
 .privacy-note {
   margin: 0;
@@ -47,15 +46,7 @@
 
 .release-header {
   display: grid;
-  gap: 6px;
   text-align: center;
-}
-
-.release-kicker {
-  color: var(--muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
 }
 
 .release-header h1 {
@@ -101,16 +92,25 @@
 @media (max-width: 520px) {
   .release-landing {
     width: min(100% - 20px, 430px);
-    padding-top: 12px;
+    padding-top: 8px;
     align-content: start;
-    gap: 10px;
+    gap: 8px;
   }
 
   .release-artist {
-    font-size: clamp(2rem, 12vw, 3rem);
+    font-family: "Arial Black", Arial, sans-serif;
+    font-size: clamp(1.75rem, 9.5vw, 2.5rem);
+    line-height: 0.86;
+    letter-spacing: 0.035em;
+  }
+
+  .release-cover {
+    width: min(70vw, 300px);
+    justify-self: center;
   }
 
   .release-header h1 {
-    font-size: clamp(1.7rem, 8.2vw, 2.25rem);
+    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    line-height: 0.9;
   }
 }
