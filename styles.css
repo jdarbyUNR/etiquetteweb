@@ -288,19 +288,11 @@ h2 {
 }
 
 .video-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 12px;
+  min-height: 1em;
 }
 
-.video-heading p,
-.video-heading h2 {
+.video-heading p {
   margin: 0;
-}
-
-.video-heading h2 {
-  font-size: clamp(1.45rem, 5vw, 2.2rem);
 }
 
 .video-frame {
