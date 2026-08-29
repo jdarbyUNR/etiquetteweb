@@ -1,3 +1,4 @@
+import { DeferredEmbed } from "../components/DeferredEmbed";
 import { FeaturedRelease } from "../components/FeaturedRelease";
 import { PhotoGallery } from "../components/PhotoGallery";
 import { SiteFooter } from "../components/SiteFooter";
@@ -25,10 +26,13 @@ export function PressPage() {
             <h2 id="press-live-title">Live</h2>
           </div>
           <div className="video-frame">
-            <iframe
+            <DeferredEmbed
               src={liveVideo.embedUrl}
               title={liveVideo.title}
-              loading="lazy"
+              service="YouTube"
+              actionLabel="Load live video"
+              description="Loads YouTube’s player on request."
+              variant="video"
               referrerPolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen

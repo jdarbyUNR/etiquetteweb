@@ -1,9 +1,16 @@
+import { DeferredEmbed } from "./DeferredEmbed";
+import { ResponsiveImage } from "./ResponsiveImage";
+
 export function FeaturedRelease({ release, headingId = "featured-release-title" }) {
   return (
     <section className="section section-player section-featured-release" aria-labelledby={headingId}>
       <div className="release-card">
         <figure className="release-art">
-          <img src={release.artwork.src} alt={release.artwork.alt} />
+          <ResponsiveImage
+            image={release.artwork}
+            sizes="(min-width: 700px) 220px, (min-width: 521px) 150px, calc(100vw - 42px)"
+            loading="eager"
+          />
         </figure>
         <div className="release-copy">
           <p className="eyebrow release-status">{release.displayCopy}</p>
@@ -26,16 +33,16 @@ export function FeaturedRelease({ release, headingId = "featured-release-title" 
           <p>“{release.title}”</p>
         </div>
         <div className="track-player">
-          <iframe
-            style={{ borderRadius: "12px" }}
+          <DeferredEmbed
             src={release.spotifyEmbedUrl}
-            width="100%"
-            height="152"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
             title={`${release.title} by Etiquette on Spotify`}
+            service="Spotify"
+            actionLabel="Load Spotify player"
+            description="Loads Spotify’s player on request."
+            variant="audio"
+            height="152"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allowFullScreen
           />
         </div>
       </div>

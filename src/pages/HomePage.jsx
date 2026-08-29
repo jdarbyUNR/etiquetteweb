@@ -1,10 +1,12 @@
+import { DeferredEmbed } from "../components/DeferredEmbed";
 import { CorrespondenceForm } from "../components/CorrespondenceForm";
 import { FeaturedRelease } from "../components/FeaturedRelease";
 import { PlatformIcon } from "../components/PlatformIcon";
 import { PhotoGallery } from "../components/PhotoGallery";
+import { ResponsiveImage } from "../components/ResponsiveImage";
 import { SiteFooter } from "../components/SiteFooter";
 import { getFeaturedRelease } from "../content/releases";
-import { livePhotos, liveVideo, platformLinks } from "../content/site";
+import { heroImage, livePhotos, liveVideo, platformLinks } from "../content/site";
 
 const featuredRelease = getFeaturedRelease();
 
@@ -14,7 +16,12 @@ export function HomePage() {
       <main className="landing">
         <section className="section section-hero">
           <figure className="hero-image">
-            <img src="/web-images/hero.jpg" alt="Etiquette performing live for a crowd" fetchPriority="high" />
+            <ResponsiveImage
+              image={heroImage}
+              sizes="(min-width: 700px) 732px, calc(100vw - 42px)"
+              fetchPriority="high"
+              loading="eager"
+            />
           </figure>
 
           <div className="top-intro">
@@ -43,10 +50,13 @@ export function HomePage() {
             <p className="eyebrow">Live</p>
           </div>
           <div className="video-frame">
-            <iframe
+            <DeferredEmbed
               src={liveVideo.embedUrl}
               title={liveVideo.title}
-              loading="lazy"
+              service="YouTube"
+              actionLabel="Load live video"
+              description="Loads YouTube’s player on request."
+              variant="video"
               referrerPolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
