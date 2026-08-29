@@ -1,5 +1,7 @@
 import { SiteFooter } from "../components/SiteFooter";
-import { currentRelease } from "../content/site";
+import { getReleaseBySlug } from "../content/releases";
+
+const release = getReleaseBySlug("scratching-at-the-walls");
 
 export function ReleasePage() {
   return (
@@ -7,21 +9,21 @@ export function ReleasePage() {
       <p className="release-artist">Etiquette</p>
 
       <figure className="release-cover">
-        <img src={currentRelease.artwork} alt={currentRelease.artworkAlt} fetchPriority="high" />
+        <img src={release.artwork.src} alt={release.artwork.alt} fetchPriority="high" />
       </figure>
 
       <header className="release-header">
-        <h1>{currentRelease.title}</h1>
+        <h1>{release.title}</h1>
       </header>
 
-      <div className="release-actions" aria-label={`Listen to ${currentRelease.title}`}>
+      <div className="release-actions" aria-label={`Listen to ${release.title}`}>
         <a
           className="stream-link stream-link-primary"
-          href={currentRelease.spotifyUrl}
+          href={release.platforms.spotify}
           target="_blank"
           rel="noreferrer"
           data-platform="spotify"
-          data-song={currentRelease.title}
+          data-song={release.title}
         >
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
             <circle cx="12" cy="12" r="12" fill="currentColor" />
@@ -32,11 +34,11 @@ export function ReleasePage() {
 
         <a
           className="stream-link"
-          href={currentRelease.appleMusicUrl}
+          href={release.platforms.appleMusic}
           target="_blank"
           rel="noreferrer"
           data-platform="apple-music"
-          data-song={currentRelease.title}
+          data-song={release.title}
         >
           <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
             <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 8.95 7.29c1.32-.07 2.3.72 3.1.72.75 0 2.16-.97 3.64-.83 1.62.13 2.84.77 3.65 1.93-3.34 2-2.55 6.39.52 7.63-.61 1.6-1.42 3.18-2.81 3.54ZM12.03 7.25c-.15-2.37 1.77-4.32 3.99-4.5.31 2.74-2.48 4.78-3.99 4.5Z" fill="currentColor" />

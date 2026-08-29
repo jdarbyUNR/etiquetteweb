@@ -1,14 +1,3 @@
-export const currentRelease = {
-  title: "Scratching at the Walls",
-  status: "New single — out now",
-  artwork: "/web-images/scratching-at-the-walls.jpg",
-  artworkAlt: "Scratching at the Walls single artwork by Etiquette",
-  hyperfollowUrl: "https://distrokid.com/hyperfollow/etiquette2/scratching-at-the-walls?ref=release",
-  spotifyUrl: "https://open.spotify.com/track/2jTTsXaaqBG3bPp6gXh2ul?si=77a223ac19b440ea",
-  spotifyEmbedUrl: "https://open.spotify.com/embed/track/2jTTsXaaqBG3bPp6gXh2ul?utm_source=generator",
-  appleMusicUrl: "https://music.apple.com/us/song/scratching-at-the-walls/6796590083"
-};
-
 export const platformLinks = [
   {
     platform: "spotify",
@@ -48,8 +37,44 @@ export const liveVideo = {
 };
 
 export const livePhotos = [
-  { src: "/web-images/live-1.jpg", alt: "Etiquette performing live" },
-  { src: "/web-images/live-2.jpg", alt: "Etiquette bassist performing live" },
-  { src: "/web-images/live-3.jpg", alt: "Etiquette guitarist during a live set" },
-  { src: "/web-images/live-4.jpg", alt: "Etiquette performing live" }
+  {
+    id: "live-1",
+    src: "/web-images/live-1.jpg",
+    fullSrc: "/web-images/live-1.jpg",
+    alt: "Etiquette performing live",
+    caption: null,
+    venue: null,
+    date: null,
+    photographer: "Trevor Castillo"
+  },
+  {
+    id: "live-2",
+    src: "/web-images/live-2.jpg",
+    fullSrc: "/web-images/live-2.jpg",
+    alt: "Etiquette bassist performing live",
+    caption: null,
+    venue: null,
+    date: null,
+    photographer: "Trevor Castillo"
+  },
+  {
+    id: "live-3",
+    src: "/web-images/live-3.jpg",
+    fullSrc: "/web-images/live-3.jpg",
+    alt: "Etiquette guitarist during a live set",
+    caption: null,
+    venue: null,
+    date: null,
+    photographer: "Trevor Castillo"
+  },
+  {
+    id: "live-4",
+    src: "/web-images/live-4.jpg",
+    fullSrc: "/web-images/live-4.jpg",
+    alt: "Etiquette performing live",
+    caption: null,
+    venue: null,
+    date: null,
+    photographer: "Trevor Castillo"
+  }
 ];

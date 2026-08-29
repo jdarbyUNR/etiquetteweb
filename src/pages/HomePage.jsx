@@ -1,6 +1,12 @@
+import { CorrespondenceForm } from "../components/CorrespondenceForm";
+import { FeaturedRelease } from "../components/FeaturedRelease";
 import { PlatformIcon } from "../components/PlatformIcon";
+import { PhotoGallery } from "../components/PhotoGallery";
 import { SiteFooter } from "../components/SiteFooter";
-import { currentRelease, livePhotos, liveVideo, platformLinks } from "../content/site";
+import { getFeaturedRelease } from "../content/releases";
+import { livePhotos, liveVideo, platformLinks } from "../content/site";
+
+const featuredRelease = getFeaturedRelease();
 
 export function HomePage() {
   return (
@@ -17,44 +23,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="section section-player section-featured-release" aria-labelledby="featured-release-title">
-          <div className="release-card">
-            <figure className="release-art">
-              <img src={currentRelease.artwork} alt={currentRelease.artworkAlt} />
-            </figure>
-            <div className="release-copy">
-              <p className="eyebrow release-status">{currentRelease.status}</p>
-              <h2 id="featured-release-title">{currentRelease.title}</h2>
-              <a
-                className="cta-button cta-button-primary stream-link"
-                href={currentRelease.hyperfollowUrl}
-                target="_blank"
-                rel="noreferrer"
-                data-platform="hyperfollow"
-                data-song={currentRelease.title}
-              >Listen to “{currentRelease.title}”</a>
-            </div>
-          </div>
-          <div className="player-stack">
-            <div className="player-copy">
-              <p className="eyebrow">Listen on Spotify</p>
-              <p>“{currentRelease.title}”</p>
-            </div>
-            <div className="track-player">
-              <iframe
-                style={{ borderRadius: "12px" }}
-                src={currentRelease.spotifyEmbedUrl}
-                width="100%"
-                height="152"
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                title={`${currentRelease.title} by Etiquette on Spotify`}
-              />
-            </div>
-          </div>
-        </section>
+        <FeaturedRelease release={featuredRelease} />
 
         <section className="section section-links" aria-labelledby="music-social-heading">
           <p className="eyebrow section-label" id="music-social-heading">More music &amp; social</p>
@@ -66,6 +35,8 @@ export function HomePage() {
             ))}
           </div>
         </section>
+
+        <CorrespondenceForm />
 
         <section className="section section-video">
           <div className="video-heading">
@@ -84,16 +55,10 @@ export function HomePage() {
         </section>
 
         <section className="section section-photo-row">
-          <div className="filmstrip-grid">
-            {livePhotos.map(({ src, alt }) => (
-              <figure className="filmstrip-card" key={src}>
-                <img src={src} alt={alt} loading="lazy" />
-              </figure>
-            ))}
-          </div>
+          <PhotoGallery photos={livePhotos} label="Etiquette live photographs" />
         </section>
 
-        <SiteFooter />
+        <SiteFooter includePress />
       </main>
     </div>
   );

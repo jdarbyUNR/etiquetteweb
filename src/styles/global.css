@@ -47,9 +47,16 @@ a {
 }
 
 a:focus-visible,
+button:focus-visible,
+input:focus-visible,
 iframe:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
+}
+
+button,
+input {
+  font: inherit;
 }
 
 img {
@@ -186,6 +193,114 @@ h2 {
 .section-links {
   display: grid;
   gap: 8px;
+}
+
+.section-correspondence {
+  display: grid;
+  gap: 14px;
+}
+
+.correspondence-copy {
+  display: grid;
+  gap: 7px;
+}
+
+.correspondence-copy h2,
+.correspondence-copy p {
+  margin: 0;
+}
+
+.correspondence-copy > p:last-child {
+  font-size: 0.78rem;
+}
+
+.correspondence-form {
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.correspondence-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.form-field label {
+  color: var(--text);
+  font-size: 0.64rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.form-field label span {
+  color: var(--muted);
+  font-size: 0.54rem;
+}
+
+.form-field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--text);
+  background: #050505;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-field input:disabled {
+  opacity: 0.58;
+}
+
+.form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.correspondence-submit {
+  margin-top: 0;
+}
+
+.correspondence-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.form-status,
+.form-privacy {
+  margin: 0;
+  font-size: 0.65rem;
+  line-height: 1.5;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status-success {
+  color: var(--text) !important;
+}
+
+.form-status-error,
+.form-status-unconfigured {
+  color: #d8d8d1 !important;
+}
+
+.form-privacy a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .section-label {
@@ -329,6 +444,10 @@ h2 {
 .privacy-note {
   padding: 4px 12px 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
 }
 
 .privacy-link {
@@ -482,6 +601,10 @@ h2 {
     padding: 8px;
   }
 
+  .correspondence-fields {
+    grid-template-columns: 1fr;
+  }
+
   .filmstrip-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
@@ -539,6 +662,10 @@ h2 {
 
   .filmstrip-card {
     height: 180px;
+  }
+
+  .correspondence-submit {
+    width: 100%;
   }
 }
 

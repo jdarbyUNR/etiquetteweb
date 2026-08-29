@@ -15,7 +15,14 @@ export function PrivacyPage() {
         <section>
           <h2>Events We Measure</h2>
           <p>
-            We send a PageView event when a tracked page loads. On the Scratching at the Walls landing page, clicking Spotify or Apple Music sends a StreamingClick event containing the service name and song title. The site does not collect names, email addresses, or payment information.
+            We send a PageView event when a tracked page loads. Clicking a featured streaming link sends a StreamingClick event containing the service name and song title. After a mailing-list provider confirms a signup, the site sends a MailingListSignup event containing only the signup source. Email addresses and cities are not included in Meta events.
+          </p>
+        </section>
+
+        <section>
+          <h2>Correspondence</h2>
+          <p>
+            If you join the mailing list, your email address and optional city are sent to the connected mailing-list provider so Etiquette can deliver release and show updates. The provider connection must be configured before the form accepts subscriptions.
           </p>
         </section>
 
