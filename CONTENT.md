@@ -7,9 +7,8 @@ Release records live in `src/content/releases.js`. To feature the next single:
 1. Add a complete release object with a unique `id` and `slug`, verified dates, artwork, listening URLs, Spotify embed URL, platform URLs, and tracking platform.
 2. Set the new record's `featured` field to `true` and set every other record to `false`. The site fails loudly during rendering if zero or multiple releases are featured.
 3. Update the static title, description, Open Graph title, description, image, and image alt text in the root `index.html`. These tags remain static so social crawlers receive them without running React.
-4. Generate 480px, 800px, and high-resolution AVIF, WebP, and JPEG variants in `public/web-images/responsive`, then add their widths through `responsiveSources()` in the release record. Keep the original image as the social-preview and compatibility fallback.
-5. If the dedicated advertising landing page changes, add or update its HTML entry, Vite input, and page component rather than redirecting the existing `/scratching-at-the-walls/` URL.
-6. Run `pnpm build` and verify `/`, the dedicated release URL, and `/press/` before deployment.
+4. If the dedicated advertising landing page changes, add or update its HTML entry, Vite input, and page component rather than redirecting the existing `/scratching-at-the-walls/` URL.
+5. Run `pnpm build` and verify `/`, the dedicated release URL, and `/press/` before deployment.
 
 The homepage and press page both read the explicitly featured record. The Scratching at the Walls advertising page reads that release by slug so it remains stable after a future single becomes featured.
 

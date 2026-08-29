@@ -1,5 +1,3 @@
-import { responsiveSources } from "./media";
-
 export const releases = [
   {
     id: "scratching-at-the-walls",
@@ -9,10 +7,7 @@ export const releases = [
     displayCopy: "New single — out now",
     artwork: {
       src: "/web-images/scratching-at-the-walls.jpg",
-      alt: "Scratching at the Walls single artwork by Etiquette",
-      width: 1600,
-      height: 1600,
-      sources: responsiveSources("scratching-at-the-walls", [480, 800, 1200])
+      alt: "Scratching at the Walls single artwork by Etiquette"
     },
     primaryListeningUrl: "https://distrokid.com/hyperfollow/etiquette2/scratching-at-the-walls?ref=release",
     primaryCtaLabel: "Listen to “Scratching at the Walls”",

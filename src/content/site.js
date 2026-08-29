@@ -1,13 +1,3 @@
-import { responsiveSources } from "./media";
-
-export const heroImage = {
-  src: "/web-images/hero.jpg",
-  alt: "Etiquette performing live for a crowd",
-  width: 1600,
-  height: 1067,
-  sources: responsiveSources("hero", [480, 800, 1200])
-};
-
 export const platformLinks = [
   {
     platform: "spotify",
@@ -52,9 +42,6 @@ export const livePhotos = [
     src: "/web-images/live-1.jpg",
     fullSrc: "/web-images/live-1.jpg",
     alt: "Etiquette performing live",
-    width: 1600,
-    height: 1067,
-    sources: responsiveSources("live-1", [480, 800, 1200]),
     caption: null,
     venue: null,
     date: null,
@@ -65,9 +52,6 @@ export const livePhotos = [
     src: "/web-images/live-2.jpg",
     fullSrc: "/web-images/live-2.jpg",
     alt: "Etiquette bassist performing live",
-    width: 1067,
-    height: 1600,
-    sources: responsiveSources("live-2", [480, 800, 1067]),
     caption: null,
     venue: null,
     date: null,
@@ -78,9 +62,6 @@ export const livePhotos = [
     src: "/web-images/live-3.jpg",
     fullSrc: "/web-images/live-3.jpg",
     alt: "Etiquette guitarist during a live set",
-    width: 1067,
-    height: 1600,
-    sources: responsiveSources("live-3", [480, 800, 1067]),
     caption: null,
     venue: null,
     date: null,
@@ -91,9 +72,6 @@ export const livePhotos = [
     src: "/web-images/live-4.jpg",
     fullSrc: "/web-images/live-4.jpg",
     alt: "Etiquette performing live",
-    width: 1067,
-    height: 1600,
-    sources: responsiveSources("live-4", [480, 800, 1067]),
     caption: null,
     venue: null,
     date: null,

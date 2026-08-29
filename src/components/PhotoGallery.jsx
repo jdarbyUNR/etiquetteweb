@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { getResponsiveSrcSet, ResponsiveImage } from "./ResponsiveImage";
 
 function photoDetails(photo) {
   return [photo.caption, photo.venue, photo.date].filter(Boolean).join(" — ");
@@ -58,8 +57,6 @@ export function PhotoGallery({ photos, label, variant = "filmstrip" }) {
 
     adjacentIndexes.forEach((index) => {
       const preloadImage = new Image();
-      preloadImage.srcset = getResponsiveSrcSet(photos[index], "webp") || "";
-      preloadImage.sizes = "(min-width: 700px) 960px, calc(100vw - 110px)";
       preloadImage.src = photos[index].fullSrc || photos[index].src;
     });
   }, [activeIndex, isOpen, photos]);
@@ -129,9 +126,6 @@ export function PhotoGallery({ photos, label, variant = "filmstrip" }) {
   const cardClassName = variant === "press"
     ? "photo-card press-photo-card"
     : "photo-card filmstrip-card";
-  const thumbnailSizes = variant === "press"
-    ? "(min-width: 700px) 390px, calc(100vw - 56px)"
-    : "(min-width: 700px) 180px, calc((100vw - 50px) / 2)";
 
   return (
     <>
@@ -145,7 +139,7 @@ export function PhotoGallery({ photos, label, variant = "filmstrip" }) {
               aria-haspopup="dialog"
               onClick={(event) => openLightbox(index, event.currentTarget)}
             >
-              <ResponsiveImage image={photo} sizes={thumbnailSizes} loading="lazy" />
+              <img src={photo.src} alt={photo.alt} loading="lazy" />
             </button>
             {variant === "press" && (photoDetails(photo) || photo.photographer) && (
               <figcaption className="photo-caption">
@@ -207,11 +201,11 @@ export function PhotoGallery({ photos, label, variant = "filmstrip" }) {
                 {imageError && (
                   <p className="lightbox-loading" role="alert">Image could not be loaded.</p>
                 )}
-                <ResponsiveImage
+                <img
                   key={activePhoto.id}
-                  image={activePhoto}
-                  fallbackSrc={activePhoto.fullSrc || activePhoto.src}
-                  sizes="(min-width: 700px) 960px, calc(100vw - 110px)"
+                  src={activePhoto.fullSrc || activePhoto.src}
+                  alt={activePhoto.alt}
+                  decoding="async"
                   onLoad={() => setImageLoaded(true)}
                   onError={() => setImageError(true)}
                 />

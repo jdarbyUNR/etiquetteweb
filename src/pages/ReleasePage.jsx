@@ -1,5 +1,4 @@
 import { SiteFooter } from "../components/SiteFooter";
-import { ResponsiveImage } from "../components/ResponsiveImage";
 import { getReleaseBySlug } from "../content/releases";
 
 const release = getReleaseBySlug("scratching-at-the-walls");
@@ -10,12 +9,7 @@ export function ReleasePage() {
       <p className="release-artist">Etiquette</p>
 
       <figure className="release-cover">
-        <ResponsiveImage
-          image={release.artwork}
-          sizes="(max-width: 520px) min(70vw, 300px), min(496px, calc(100vw - 24px))"
-          fetchPriority="high"
-          loading="eager"
-        />
+        <img src={release.artwork.src} alt={release.artwork.alt} fetchPriority="high" />
       </figure>
 
       <header className="release-header">
