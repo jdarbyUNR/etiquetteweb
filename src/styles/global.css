@@ -181,9 +181,10 @@ h2 {
   background: var(--panel-soft);
 }
 
-.icon-link svg {
+.platform-icon {
   width: 30px;
   height: 30px;
+  object-fit: contain;
 }
 
 .section-player {
@@ -654,7 +655,7 @@ h2 {
     gap: 6px;
   }
 
-  .icon-link svg {
+  .platform-icon {
     width: 28px;
     height: 28px;
   }
@@ -731,7 +732,7 @@ h2 {
     font-size: 0.88rem;
   }
 
-  .icon-link svg {
+  .platform-icon {
     width: 32px;
     height: 32px;
   }
