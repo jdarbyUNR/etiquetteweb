@@ -179,10 +179,9 @@ export function CorrespondenceForm() {
   }, []);
 
   return (
-    <section className="section section-correspondence" aria-labelledby="correspondence-title">
+    <section className="section section-correspondence" aria-label="Mailing list signup">
       <div className="correspondence-copy">
         <p className="eyebrow">Mailing list</p>
-        <h2 id="correspondence-title">CORRESPONDENCE</h2>
         <p>New releases, Reno shows, and occasional correspondence.</p>
       </div>
 

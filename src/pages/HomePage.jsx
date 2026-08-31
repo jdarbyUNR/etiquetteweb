@@ -23,18 +23,25 @@ export function HomePage() {
           </div>
         </section>
 
-        <FeaturedRelease release={featuredRelease} />
-
-        <section className="section section-links" aria-labelledby="music-social-heading">
-          <p className="eyebrow section-label" id="music-social-heading">More music &amp; social</p>
+        <section className="section section-links" aria-label="Music and social links">
           <div className="icon-links" aria-label="Music and social links">
             {platformLinks.map(({ platform, label, url }) => (
-              <a className="icon-link" href={url} target="_blank" rel="noreferrer" aria-label={label} key={platform}>
+              <a
+                className={`icon-link icon-link-${platform}`}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                title={label}
+                key={platform}
+              >
                 <PlatformIcon platform={platform} />
               </a>
             ))}
           </div>
         </section>
+
+        <FeaturedRelease release={featuredRelease} />
 
         <CorrespondenceForm />
 

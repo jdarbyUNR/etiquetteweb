@@ -167,7 +167,8 @@ h2 {
 
 .icon-links {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 64px));
+  justify-content: center;
   gap: 8px;
 }
 
@@ -178,12 +179,11 @@ h2 {
   aspect-ratio: 1 / 1;
   border: 1px solid var(--line);
   background: var(--panel-soft);
-  color: var(--accent);
 }
 
 .icon-link svg {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
 }
 
 .section-player {
@@ -193,7 +193,7 @@ h2 {
 
 .section-links {
   display: grid;
-  gap: 8px;
+  padding-block: 8px;
 }
 
 .section-correspondence {
@@ -655,8 +655,8 @@ h2 {
   }
 
   .icon-link svg {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
   }
 
   .release-card {
@@ -731,13 +731,9 @@ h2 {
     font-size: 0.88rem;
   }
 
-  .icon-links {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
   .icon-link svg {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
 
   .release-card {
@@ -755,6 +751,12 @@ h2 {
 
   .correspondence-submit {
     width: 100%;
+  }
+}
+
+@media (max-width: 359px) {
+  .icon-links {
+    grid-template-columns: repeat(3, minmax(48px, 64px));
   }
 }
 
