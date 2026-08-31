@@ -22,7 +22,7 @@ export function PrivacyPage() {
         <section>
           <h2>Correspondence</h2>
           <p>
-            If you join the mailing list, your email address and optional city are sent to the connected mailing-list provider so Etiquette can deliver release and show updates. The provider connection must be configured before the form accepts subscriptions.
+            If you join the mailing list, your email address and optional city are sent to EmailOctopus so Etiquette can deliver release and show updates. The signup form uses Google reCAPTCHA for spam protection. Learn more in the <a href="https://emailoctopus.com/legal/privacy" target="_blank" rel="noreferrer">EmailOctopus Privacy Policy</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google Privacy Policy</a>.
           </p>
         </section>
 

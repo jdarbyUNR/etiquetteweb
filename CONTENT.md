@@ -14,10 +14,8 @@ The homepage and press page both read the explicitly featured record. The Scratc
 
 ## Connecting Correspondence
 
-The homepage form requires a browser-safe mailing-list endpoint in `VITE_MAILING_LIST_ENDPOINT`. The endpoint must accept a cross-origin `POST` with `FormData` fields named `email`, `city`, `website`, and `source`, and return a successful HTTP status only after it persists the subscription. A JSON response may use `success: false` or `ok: false` plus a `message` when the provider rejects a signup.
+The homepage form is connected to EmailOctopus through the public form configuration in `src/content/mailingList.js`. The form currently uses EmailOctopus form ID `a6f12ace-a4f9-11f1-b15b-c716a93f1566` and collects a required email address plus an optional city. Its generated honeypot and invisible reCAPTCHA remain enabled.
 
-For local development, place the value in an ignored `.env.local` file. For GitHub Pages, add a repository Actions variable named `VITE_MAILING_LIST_ENDPOINT` under **Settings → Secrets and variables → Actions → Variables**. The existing deployment workflow passes that public endpoint into the production build.
+If the form is recreated in EmailOctopus, update both `formId` and `scriptUrl` in that file, then confirm the provider still emits `emailoctopus:form.success`. The component adds the site's labels, styling, loading behavior, focus handling, and privacy copy after EmailOctopus renders its generated form.
 
-Do not place provider API keys in a `VITE_` variable; Vite exposes these values to visitors. If the provider requires a secret or different field names, adapt `src/services/mailingList.js` to its approved browser form endpoint or add a small server-side relay on infrastructure chosen by the site owner.
-
-`MailingListSignup` is sent to the existing Meta Pixel only after the endpoint confirms success. The event contains the source name only; email and city are never sent to Meta.
+`MailingListSignup` is sent to the existing Meta Pixel only after EmailOctopus emits its provider-confirmed success event. The handler checks only the public form ID and sends the source name; it never reads or forwards the event's contact details, email address, city, list ID, or other personal information.

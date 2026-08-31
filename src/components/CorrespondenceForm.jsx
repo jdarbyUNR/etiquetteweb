@@ -1,58 +1,182 @@
-import { useState } from "react";
-import { isMailingListConfigured, submitMailingListSignup } from "../services/mailingList";
+import { useEffect, useRef, useState } from "react";
+import { correspondenceForm } from "../content/mailingList";
 
-const initialStatus = isMailingListConfigured ? "idle" : "unconfigured";
+function addFieldLabel(input, text, optional = false) {
+  const field = input.closest(".emailoctopus-form-row");
+  if (!field || field.querySelector(".etiquette-form-label")) {
+    return;
+  }
 
-export function CorrespondenceForm() {
-  const [status, setStatus] = useState(initialStatus);
-  const [message, setMessage] = useState(
-    isMailingListConfigured ? "" : "Signup connection pending."
+  const label = document.createElement("label");
+  label.className = "etiquette-form-label";
+  label.htmlFor = input.id;
+  label.append(document.createTextNode(text));
+
+  if (optional) {
+    const optionalText = document.createElement("span");
+    optionalText.textContent = " (optional)";
+    label.append(optionalText);
+  }
+
+  field.insertBefore(label, input);
+}
+
+function enhanceProviderForm(mount) {
+  const providerForm = mount.querySelector(".emailoctopus-form");
+  if (!providerForm || providerForm.dataset.etiquetteReady === "true") {
+    return null;
+  }
+
+  providerForm.dataset.etiquetteReady = "true";
+  providerForm.setAttribute(
+    "aria-describedby",
+    "correspondence-provider-error correspondence-provider-success correspondence-privacy"
   );
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  const emailInput = providerForm.querySelector('input[type="email"]');
+  if (emailInput) {
+    emailInput.id = "correspondence-email";
+    emailInput.autocomplete = "email";
+    emailInput.inputMode = "email";
+    addFieldLabel(emailInput, "Email");
+  }
 
-    const form = event.currentTarget;
-    if (!form.reportValidity()) {
+  const cityInput = providerForm.querySelector('input[type="text"]:not([tabindex="-1"])');
+  if (cityInput) {
+    cityInput.id = "correspondence-city";
+    cityInput.autocomplete = "address-level2";
+    addFieldLabel(cityInput, "City", true);
+  }
+
+  const submitInput = providerForm.querySelector('input[type="submit"]');
+  if (submitInput) {
+    submitInput.value = "Join the list";
+    submitInput.classList.add("cta-button", "cta-button-primary", "correspondence-submit");
+  }
+
+  const successMessage = mount.querySelector(".emailoctopus-success-message");
+  if (successMessage) {
+    successMessage.id = "correspondence-provider-success";
+    successMessage.setAttribute("role", "status");
+    successMessage.setAttribute("aria-live", "polite");
+    successMessage.tabIndex = -1;
+  }
+
+  const errorMessage = mount.querySelector(".emailoctopus-error-message");
+  if (errorMessage) {
+    errorMessage.id = "correspondence-provider-error";
+    errorMessage.setAttribute("role", "alert");
+    errorMessage.setAttribute("aria-live", "assertive");
+  }
+
+  function handleSubmit() {
+    providerForm.setAttribute("aria-busy", "true");
+    if (submitInput) {
+      submitInput.value = "Joining…";
+    }
+  }
+
+  providerForm.addEventListener("submit", handleSubmit, true);
+
+  const errorObserver = errorMessage
+    ? new MutationObserver(() => {
+      if (!errorMessage.textContent.trim()) {
+        return;
+      }
+
+      providerForm.removeAttribute("aria-busy");
+      if (submitInput) {
+        submitInput.value = "Join the list";
+      }
+    })
+    : null;
+
+  errorObserver?.observe(errorMessage, {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+
+  return () => {
+    providerForm.removeEventListener("submit", handleSubmit, true);
+    errorObserver?.disconnect();
+  };
+}
+
+export function CorrespondenceForm() {
+  const mountRef = useRef(null);
+  const scriptRequestedRef = useRef(false);
+  const conversionTrackedRef = useRef(false);
+  const [loadStatus, setLoadStatus] = useState("loading");
+
+  useEffect(() => {
+    if (scriptRequestedRef.current || !mountRef.current) {
       return;
     }
 
-    const formData = new FormData(form);
-    const website = String(formData.get("website") || "").trim();
+    scriptRequestedRef.current = true;
 
-    if (website) {
-      setStatus("error");
-      setMessage("We could not submit that request. Please try again.");
-      return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = correspondenceForm.scriptUrl;
+    script.dataset.form = correspondenceForm.formId;
+    script.addEventListener("error", () => setLoadStatus("error"), { once: true });
+    mountRef.current.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    const mount = mountRef.current;
+    if (!mount) {
+      return undefined;
     }
 
-    setStatus("loading");
-    setMessage("Submitting your address…");
+    let providerCleanup = null;
 
-    try {
-      await submitMailingListSignup({
-        email: String(formData.get("email") || "").trim(),
-        city: String(formData.get("city") || "").trim(),
-        website
-      });
+    function wireProviderForm() {
+      if (providerCleanup) {
+        return;
+      }
 
-      form.reset();
-      setStatus("success");
-      setMessage("You’re on the list. Correspondence will follow.");
+      providerCleanup = enhanceProviderForm(mount);
+      if (providerCleanup) {
+        setLoadStatus("ready");
+      }
+    }
 
-      if (typeof window.fbq === "function") {
+    function handleProviderSuccess(event) {
+      if (event.detail?.form_id !== correspondenceForm.formId) {
+        return;
+      }
+
+      mount.querySelector(".emailoctopus-form")?.removeAttribute("aria-busy");
+
+      window.setTimeout(() => {
+        const successMessage = mount.querySelector(".emailoctopus-success-message");
+        if (successMessage) {
+          successMessage.textContent = "You’re on the list. Correspondence will follow.";
+          successMessage.focus();
+        }
+      }, 0);
+
+      if (!conversionTrackedRef.current && typeof window.fbq === "function") {
+        conversionTrackedRef.current = true;
         window.fbq("trackCustom", "MailingListSignup", {
           source: "homepage"
         });
       }
-    } catch (error) {
-      setStatus("error");
-      setMessage(error instanceof Error ? error.message : "We could not add you to the list. Please try again.");
     }
-  }
 
-  const isLoading = status === "loading";
-  const isDisabled = status === "unconfigured" || isLoading;
+    const mountObserver = new MutationObserver(wireProviderForm);
+    mountObserver.observe(mount, { childList: true, subtree: true });
+    document.addEventListener(correspondenceForm.successEvent, handleProviderSuccess);
+    wireProviderForm();
+
+    return () => {
+      mountObserver.disconnect();
+      providerCleanup?.();
+      document.removeEventListener(correspondenceForm.successEvent, handleProviderSuccess);
+    };
+  }, []);
 
   return (
     <section className="section section-correspondence" aria-labelledby="correspondence-title">
@@ -62,64 +186,21 @@ export function CorrespondenceForm() {
         <p>New releases, Reno shows, and occasional correspondence.</p>
       </div>
 
-      <form
-        className="correspondence-form"
-        onSubmit={handleSubmit}
-        aria-busy={isLoading}
-        aria-describedby="correspondence-status correspondence-privacy"
-      >
-        <div className="correspondence-fields">
-          <div className="form-field">
-            <label htmlFor="correspondence-email">Email</label>
-            <input
-              id="correspondence-email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              inputMode="email"
-              required
-              disabled={isLoading}
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="correspondence-city">City <span>(optional)</span></label>
-            <input
-              id="correspondence-city"
-              name="city"
-              type="text"
-              autoComplete="address-level2"
-              disabled={isLoading}
-            />
-          </div>
-        </div>
-
-        <div className="form-trap" aria-hidden="true">
-          <label htmlFor="correspondence-website">Leave this field empty</label>
-          <input
-            id="correspondence-website"
-            name="website"
-            type="text"
-            tabIndex="-1"
-            autoComplete="off"
-          />
-        </div>
-
-        <button className="cta-button cta-button-primary correspondence-submit" type="submit" disabled={isDisabled}>
-          {isLoading ? "Joining…" : "Join the list"}
-        </button>
-
+      <div className="correspondence-form">
+        <div className="correspondence-provider" ref={mountRef} />
         <p
-          id="correspondence-status"
-          className={`form-status form-status-${status}`}
-          role={status === "error" ? "alert" : "status"}
+          className={`form-status form-status-${loadStatus}`}
+          role={loadStatus === "error" ? "alert" : "status"}
           aria-live="polite"
-        >{message}</p>
+        >
+          {loadStatus === "loading" && "Loading signup…"}
+          {loadStatus === "error" && "Signup could not be loaded. Please refresh and try again."}
+        </p>
 
         <p className="form-privacy" id="correspondence-privacy">
-          Your email stays out of ad events. <a href="/privacy/">Privacy &amp; ad choices</a>.
+          Your email stays out of ad events. <a href="/privacy/">Privacy &amp; ad choices</a>. Protected by reCAPTCHA; Google’s <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">Terms</a> apply.
         </p>
-      </form>
+      </div>
     </section>
   );
 }
