@@ -14,7 +14,7 @@ The homepage and press page both read the explicitly featured record. The Scratc
 
 ## between us girls advertising page
 
-The dedicated `/between-us-girls/` page reads its own record from `src/content/releases.js`. It does not change the homepage's featured release. The primary CTA and Spotify embed are ready for a future homepage update; before promoting this record to `featured`, confirm its release date and update homepage metadata. The ad page does not display an unverified release date.
+The dedicated `/between-us-girls/` page reads its own record from `src/content/releases.js`. This record is also featured on the homepage and press page, with its current artwork, direct Spotify CTA, Spotify embed, and an “All listening options” link to the dedicated page. The root HTML social metadata matches this release. No unverified release date is displayed. Internal navigation to the listening page does not fire `StreamingClick`; that event is reserved for streaming destinations.
 
 The page uses `src/pages/BetweenUsGirlsPage.jsx`, `src/styles/between-us-girls.css`, and the static social metadata in `between-us-girls/index.html`. Its 1200px cover is the single's artwork from the supplied Apple Music page, hosted locally as `public/web-images/between-us-girls.jpg`, with a 600px WebP for smaller screens. Keep the visible title, links, artwork, and static social metadata in sync.
 

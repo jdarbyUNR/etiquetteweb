@@ -18,6 +18,11 @@ export function FeaturedRelease({ release, headingId = "featured-release-title" 
           >
             {release.primaryCtaLabel}
           </a>
+          {release.listeningPageUrl && (
+            <a className="cta-button" href={release.listeningPageUrl}>
+              All listening options
+            </a>
+          )}
         </div>
       </div>
       <div className="player-stack">
