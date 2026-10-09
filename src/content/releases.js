@@ -18,6 +18,26 @@ export const releases = [
       appleMusic: "https://music.apple.com/us/song/scratching-at-the-walls/6796590083"
     },
     featured: true
+  },
+  {
+    id: "between-us-girls",
+    slug: "between-us-girls",
+    title: "between us girls",
+    displayCopy: "New single — out now",
+    artwork: {
+      src: "/web-images/between-us-girls.jpg",
+      alt: "between us girls by Etiquette — orange light reflected on dark water"
+    },
+    primaryListeningUrl: "https://open.spotify.com/track/63HZ6W8ybrXuL1waTGnIJS?si=e092b93793eb40f6",
+    primaryCtaLabel: "Listen to “between us girls”",
+    primaryTrackingPlatform: "spotify",
+    spotifyEmbedUrl: "https://open.spotify.com/embed/track/63HZ6W8ybrXuL1waTGnIJS?utm_source=oembed",
+    platforms: {
+      spotify: "https://open.spotify.com/track/63HZ6W8ybrXuL1waTGnIJS?si=e092b93793eb40f6",
+      appleMusic: "https://music.apple.com/us/song/between-us-girls/6815843817",
+      youtubeMusic: "https://music.youtube.com/watch?v=v4zC-gYDa9M&si=Thza2bQW018tudGS"
+    },
+    featured: false
   }
 ];
 

@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         home: fileURLToPath(new URL("index.html", import.meta.url)),
         release: fileURLToPath(new URL("scratching-at-the-walls/index.html", import.meta.url)),
+        betweenUsGirls: fileURLToPath(new URL("between-us-girls/index.html", import.meta.url)),
         privacy: fileURLToPath(new URL("privacy/index.html", import.meta.url)),
         press: fileURLToPath(new URL("press/index.html", import.meta.url))
       }

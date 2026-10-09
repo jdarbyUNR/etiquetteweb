@@ -4,6 +4,7 @@ const platformIcons = {
   bandcamp: "/brand-icons/bandcamp.png",
   soundcloud: "/brand-icons/soundcloud.png",
   youtube: "/brand-icons/youtube.png",
+  "youtube-music": "/brand-icons/youtube-music.png",
   instagram: "/brand-icons/instagram.webp"
 };
 

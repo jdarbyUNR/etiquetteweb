@@ -12,6 +12,16 @@ Release records live in `src/content/releases.js`. To feature the next single:
 
 The homepage and press page both read the explicitly featured record. The Scratching at the Walls advertising page reads that release by slug so it remains stable after a future single becomes featured.
 
+## between us girls advertising page
+
+The dedicated `/between-us-girls/` page reads its own record from `src/content/releases.js`. It does not change the homepage's featured release. The primary CTA and Spotify embed are ready for a future homepage update; before promoting this record to `featured`, confirm its release date and update homepage metadata. The ad page does not display an unverified release date.
+
+The page uses `src/pages/BetweenUsGirlsPage.jsx`, `src/styles/between-us-girls.css`, and the static social metadata in `between-us-girls/index.html`. Its 1200px cover is the single's artwork from the supplied Apple Music page, hosted locally as `public/web-images/between-us-girls.jpg`, with a 600px WebP for smaller screens. Keep the visible title, links, artwork, and static social metadata in sync.
+
+The YouTube Music destination was verified against the supplied video's ID (`v4zC-gYDa9M`); its title and artist match. The supplied share parameters are retained. Each listening button uses the existing `.stream-link` helper and `StreamingClick` event with the song title and platform (`spotify`, `apple-music`, or `youtube-music`). The existing Meta Pixel script runs once per page. Incoming ad query parameters remain on the landing URL for Meta attribution; there is no redirect that strips them.
+
+Run `pnpm build`, then `pnpm preview` and open `/between-us-girls/`. Check 390px mobile and desktop layouts and the three service links before publishing. Publishing remains a separate step.
+
 ## Connecting Correspondence
 
 The homepage form is connected to EmailOctopus through the public form configuration in `src/content/mailingList.js`. The form currently uses EmailOctopus form ID `a6f12ace-a4f9-11f1-b15b-c716a93f1566` and collects a required email address plus an optional city. Its generated honeypot and invisible reCAPTCHA remain enabled.
