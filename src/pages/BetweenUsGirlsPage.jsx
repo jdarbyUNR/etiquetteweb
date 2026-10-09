@@ -22,7 +22,7 @@ export function BetweenUsGirlsPage() {
           <img
             src={release.artwork.src}
             srcSet="/web-images/between-us-girls-600.webp 600w, /web-images/between-us-girls.jpg 1200w"
-            sizes="(max-width: 409px) 66vw, (max-width: 699px) 270px, (max-width: 1175px) 46vw, 530px"
+            sizes="(max-width: 699px) min(42vw, 160px, 24svh), (max-width: 1175px) 46vw, 530px"
             alt={release.artwork.alt}
             width="1200"
             height="1200"

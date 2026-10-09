@@ -217,12 +217,12 @@
 @media (max-width: 699px) {
   .single-shell {
     width: min(440px, calc(100% - 40px));
-    padding-block: 22px 8px;
+    padding-block: 14px 8px;
     justify-content: flex-start;
   }
 
   .single-masthead {
-    padding-bottom: 16px;
+    padding-bottom: 12px;
   }
 
   .single-wordmark {
@@ -236,31 +236,33 @@
 
   .single-feature {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    padding-block: 24px;
+    gap: 16px;
+    padding-block: 16px;
   }
 
   .single-artwork {
-    width: min(66vw, 270px);
+    /* Reserve room for all three players in short in-app browser viewports. */
+    width: min(42vw, 160px);
+    width: min(42vw, 160px, 24svh);
     justify-self: center;
   }
 
   .single-status {
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-size: 9px;
   }
 
   .single-details h1 {
     max-width: none;
-    font-size: clamp(38px, 11.5vw, 52px);
+    font-size: clamp(36px, 10vw, 44px);
     line-height: 1.1;
     letter-spacing: -0.025em;
     text-align: center;
   }
 
   .single-services {
-    margin-top: 22px;
+    margin-top: 16px;
   }
 
   .single-service {
