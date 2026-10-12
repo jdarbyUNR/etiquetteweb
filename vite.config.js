@@ -1,11 +1,19 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { renderBetweenUsGirls } from "./src/renderBetweenUsGirls.js";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), {
+    name: "render-release-landing",
+    transformIndexHtml(html) {
+      return html.includes("<!-- between-us-girls-content -->")
+        ? html.replace("<!-- between-us-girls-content -->", renderBetweenUsGirls())
+        : html;
+    }
+  }],
   build: {
     rollupOptions: {
       input: {
