@@ -36,7 +36,8 @@ export function renderBetweenUsGirls() {
             ${services.map(({ platform, name, icon, url }) => `
               <a class="stream-link single-service single-service-${platform}" href="${escapeHtml(url)}"
                 aria-label="Listen to ${escapeHtml(release.title)} on ${name}"
-                data-platform="${platform}" data-song="${escapeHtml(release.title)}" data-track-navigation="same-tab">
+                target="_blank" rel="noreferrer"
+                data-platform="${platform}" data-song="${escapeHtml(release.title)}">
                 <span class="single-icon-wrap"><img class="platform-icon" src="/brand-icons/${icon}" alt="" width="32" height="32"></span>
                 <span class="single-service-name">${name}</span>
                 <span class="single-service-action" aria-hidden="true">Play <svg viewBox="0 0 12 12" width="10" height="10"><path d="M3 1.5 10 6 3 10.5Z" fill="currentColor"/></svg></span>
