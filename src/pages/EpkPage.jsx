@@ -24,7 +24,7 @@ function LivePerformance() {
       ) : (
         <button className="epk-video-load" onClick={() => setLoaded(true)} aria-label={`Load ${epkVideo.embedTitle} video player`}>
           <img src={epkVideo.poster} alt="" width="480" height="360" loading="lazy" />
-          <span className="epk-video-control"><span className="epk-play" aria-hidden="true">▶</span><span>Load live video <small>“{epkVideo.title}” · YouTube</small></span></span>
+          <span className="epk-video-control"><span className="epk-play" aria-hidden="true">▶</span><span>Load video <small>YouTube</small></span></span>
         </button>
       )}
     </div>
@@ -47,7 +47,7 @@ function TrackPlayer({ track }) {
         />
       ) : (
         <button className="epk-player-load" onClick={() => setLoaded(true)} aria-label={`Load Spotify player for ${track.title}`}>
-          <span aria-hidden="true">▶</span> Listen here <span className="epk-player-provider">Spotify player</span>
+          <span aria-hidden="true">▶</span> Play here
         </button>
       )}
     </div>
@@ -81,28 +81,26 @@ export function EpkPage() {
               <p className="epk-hero-credit">Photography: Trevor Castillo</p>
             </div>
             <div className="epk-identity-rail">
-              <div><p className="epk-kicker">Reno, Nevada</p><p className="epk-identity">Indie / art rock</p></div>
-              <p className="epk-sound">Dynamic guitars and expressive baritone vocals, with funk-influenced bass and punk energy.</p>
+              <div><p className="epk-kicker">Reno, Nevada</p><p className="epk-identity">Art-rock / post-punk</p></div>
               <div className="epk-hero-actions">
-                <a className="epk-watch" href="#live"><span aria-hidden="true">▶</span>Watch “What a Day!” live<span aria-hidden="true">↓</span></a>
+                <a className="epk-watch" href="#live"><span aria-hidden="true">▶</span>Watch live<span aria-hidden="true">↓</span></a>
                 <BookingLink className="epk-hero-booking"><span className="epk-booking-label">Booking</span><span>{bookingEmail}</span></BookingLink>
               </div>
             </div>
           </section>
 
           <div className="epk-content">
+          <div className="epk-media-grid">
           <section className="epk-live epk-section" id="live" aria-labelledby="epk-live-title">
-            <div className="epk-live-copy">
-              <h2 id="epk-live-title">Live performance</h2>
-              <p className="epk-live-song">“{epkVideo.title}”</p>
-              <p>Full-song live performance.</p>
-              <a className="epk-text-link" href={epkVideo.watchUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+            <div className="epk-section-heading">
+              <h2 id="epk-live-title">Live · {epkVideo.title}</h2>
+              <a className="epk-text-link" href={epkVideo.watchUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${epkVideo.title} live on YouTube`}>YouTube <span aria-hidden="true">↗</span></a>
             </div>
             <LivePerformance />
           </section>
 
           <section className="epk-section" id="music" aria-labelledby="epk-music-title">
-            <div className="epk-section-heading"><h2 id="epk-music-title">Selected music</h2></div>
+            <div className="epk-section-heading"><h2 id="epk-music-title">Music</h2></div>
             <div className="epk-tracks">
               {epkTracks.map((track) => (
                 <article className="epk-track" key={track.id}>
@@ -122,20 +120,12 @@ export function EpkPage() {
               ))}
             </div>
             <article className="epk-debut" aria-labelledby="epk-debut-title">
-              <div>
-                <p className="epk-kicker">Debut EP · <time dateTime={epkDebut.releaseDate}>January 2, 2026</time></p>
-                <h3 id="epk-debut-title">{epkDebut.title}</h3>
-                <a className="epk-text-link stream-link" href={epkDebut.url} target="_blank" rel="noopener noreferrer" data-platform="bandcamp" data-song={epkDebut.title}>Listen on Bandcamp <span aria-hidden="true">↗</span></a>
+              <div className="epk-section-heading">
+                <h3 id="epk-debut-title">Debut EP</h3>
+                <a className="epk-text-link stream-link" href={epkDebut.url} target="_blank" rel="noopener noreferrer" data-platform="bandcamp" data-song={epkDebut.title} aria-label={`Listen to ${epkDebut.title} on Bandcamp`}>Bandcamp <span aria-hidden="true">↗</span></a>
               </div>
               <iframe className="epk-album-player" src={epkDebut.embedUrl} title={`${epkDebut.title} — Etiquette’s five-track debut EP on Bandcamp`} width="100%" height="307" loading="lazy" />
             </article>
-          </section>
-
-          <section className="epk-section epk-bio" id="bio" aria-labelledby="epk-bio-title">
-            <div className="epk-section-heading"><h2 id="epk-bio-title">Biography</h2><a className="epk-text-link" href={`data:text/plain;charset=utf-8,${encodeURIComponent(epkBio + "\n")}`} download="Etiquette-bio.txt">Download bio (.txt) <span aria-hidden="true">↓</span></a></div>
-            <div className="epk-bio-copy">
-              <p>{epkBio}</p>
-            </div>
           </section>
 
           <section className="epk-section" id="press" aria-labelledby="epk-press-title">
@@ -153,9 +143,17 @@ export function EpkPage() {
             </div>
           </section>
 
+          </div>
+
+          <section className="epk-section epk-bio" id="bio" aria-labelledby="epk-bio-title">
+            <div className="epk-section-heading"><h2 id="epk-bio-title">Biography</h2><a className="epk-text-link" href={`data:text/plain;charset=utf-8,${encodeURIComponent(epkBio + "\n")}`} download="Etiquette-bio.txt">Download bio (.txt) <span aria-hidden="true">↓</span></a></div>
+            <div className="epk-bio-copy">
+              {epkBio.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+          </section>
+
           <section className="epk-section" id="photos" aria-labelledby="epk-photos-title">
-            <div className="epk-section-heading"><h2 id="epk-photos-title">Press photos</h2></div>
-            <p className="epk-photo-note">Full-resolution JPEGs. Please credit Trevor Castillo.</p>
+            <div className="epk-section-heading"><h2 id="epk-photos-title">Press photos</h2><p className="epk-photo-note">Full-resolution JPEGs · Credit Trevor Castillo</p></div>
             <div className="epk-photo-grid">
               {pressPhotos.map((photo, index) => (
                 <figure className="epk-photo" key={photo.download}>
@@ -163,7 +161,6 @@ export function EpkPage() {
                   <figcaption>
                     <a className="epk-text-link" href={photo.download} download>Download photo {index + 1} <span aria-hidden="true">↓</span></a>
                     <span className="epk-file-detail">{photo.width} × {photo.height} · JPG · {photo.size}</span>
-                    <span className="epk-file-detail">Photo: {photo.photographer}</span>
                   </figcaption>
                 </figure>
               ))}
@@ -184,7 +181,7 @@ export function EpkPage() {
           </section>
           </div>
         </main>
-        <div className="epk-footer epk-content"><a href="/">← Back to Etiquette</a><p>Reno, Nevada</p><SiteFooter /></div>
+        <div className="epk-footer epk-content"><a href="/">← Back to Etiquette</a><SiteFooter /></div>
       </div>
     </>
   );
