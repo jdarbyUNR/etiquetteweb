@@ -146,9 +146,13 @@ export function EpkPage() {
           </div>
 
           <section className="epk-section epk-bio" id="bio" aria-labelledby="epk-bio-title">
-            <div className="epk-section-heading"><h2 id="epk-bio-title">Biography</h2><a className="epk-text-link" href={`data:text/plain;charset=utf-8,${encodeURIComponent(epkBio + "\n")}`} download="Etiquette-bio.txt">Download bio (.txt) <span aria-hidden="true">↓</span></a></div>
+            <div className="epk-section-heading"><h2 id="epk-bio-title">Biography</h2><a className="epk-text-link" href={`data:text/plain;charset=utf-8,${encodeURIComponent(epkBio.replaceAll("*", "") + "\n")}`} download="Etiquette-bio.txt">Download bio (.txt) <span aria-hidden="true">↓</span></a></div>
             <div className="epk-bio-copy">
-              {epkBio.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {epkBio.split("\n\n").map((paragraph) => (
+                <p key={paragraph}>{paragraph.split("*").map((part, index) =>
+                  index % 2 === 1 ? <cite key={index}>{part}</cite> : part
+                )}</p>
+              ))}
             </div>
           </section>
 

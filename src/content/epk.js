@@ -25,11 +25,11 @@ export const epkDebut = {
   embedUrl: "https://bandcamp.com/EmbeddedPlayer/album=2848918171/size=large/bgcol=eeece4/linkcol=ab291d/artwork=small/transparent=true/"
 };
 
-export const epkBio = `Etiquette is a Reno, Nevada art-rock/post-punk band combining raw, garage-y guitars with jazz-informed harmony and a Latin/funk pulse. Big, melodic choruses anchor their songs, with vocals ranging from a low, crooning baritone to a full-throated roar.
+export const epkBio = `Etiquette is a Reno, Nevada art-rock/post-punk band combining raw, garage-y guitars with jazz-informed harmony and a Latin/funk pulse. Big, melodic choruses and expressive baritone vocals anchor their songs, while the band's punk roots drive an energetic, danceable live show with room for improvisation.
 
-The band brings together Jacob (vocals/guitar), Zaine (guitar), Zach (bass), and Wolfgang (drums). Jacob and Zach come from formal jazz and classical backgrounds, while Wolfgang and Zaine are veterans of Reno’s punk and hardcore scenes. Those backgrounds meet in a live show that pairs punk energy with danceable grooves and room for improvisation.
+Bringing together musicians from jazz and classical backgrounds with veterans of Reno's punk and hardcore scenes, Etiquette has headlined venues including The Holland Project and Club Underground and played to a packed room at Santa Cruz's SubRosa Community Space.
 
-Since forming in 2026, Etiquette has released their DIY-recorded debut EP, What a Day!, followed by singles from their upcoming album. They’ve headlined Reno venues including Club Underground and The Holland Project and begun playing in California, recently performing to a packed room at Santa Cruz’s SubRosa Community Space. Their debut full-length album, Boléro, is due in spring 2027.`;
+Formed in 2026, the band has released its DIY debut EP, *What a Day!*, and is preparing its first full-length album, *Boléro*, for spring 2027.`;
 
 export const pressQuotes = [
   {

@@ -97,6 +97,7 @@
 .epk-album-player { display: block; border: 0; }
 .epk-bio-copy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .epk-bio-copy > p { font-size: 1.15rem; line-height: 1.45; }
+.epk-bio-copy cite { font-style: italic; font-synthesis: style; }
 .epk-quotes { display: grid; gap: 16px; }
 .epk-quote { margin: 0; padding-left: 14px; border-left: 2px solid var(--accent); }
 .epk-quote blockquote { margin: 0 0 4px; font-size: 1.35rem; line-height: 1.3; }
